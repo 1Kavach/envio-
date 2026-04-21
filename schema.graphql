@@ -1,0 +1,29 @@
+# Kavach V3 CLMM — pools + per-day volume (top-10 / charts).
+# Token symbols/decimals can be added later via Effect API or a small metadata job.
+
+type Pool {
+  id: ID!
+  chainId: Int!
+  address: String!
+  token0: String!
+  token1: String!
+  feeTier: Int!
+  tickSpacing: Int!
+  volumeToken0: BigInt!
+  volumeToken1: BigInt!
+  swapCount: Int!
+  createdAt: Timestamp!
+  lastSwapAt: Timestamp
+}
+
+# Daily buckets for "top 10 in last 24h" style charts (sum recent days in the client or add a view later).
+
+type PoolDayData {
+  id: ID!
+  pool_id: String!
+  chainId: Int!
+  dayStart: Timestamp!
+  volumeToken0: BigInt!
+  volumeToken1: BigInt!
+  swapCount: Int!
+}

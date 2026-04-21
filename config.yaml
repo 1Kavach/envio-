@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+# Kavach V3 concentrated-liquidity pools on Base + Ethereum.
+# Addresses match deployments/base.json and deployments/mainnet.json (KavachV3Factory).
+#
+# After clone: pnpm install && pnpm codegen
+# Local: pnpm dev (Docker). Hosted: connect this repo (or monorepo subfolder) on envio.dev
+
+name: kavachswap-v3-indexer
+description: Kavach V3 factories + dynamic pools; Swap aggregates for top-10 / charts
+unordered_multichain_mode: true
+
+contracts:
+  - name: KavachV3Factory
+    handler: src/EventHandlers.ts
+    events:
+      - event: PoolCreated(address indexed token0, address indexed token1, uint24 indexed fee, int24 tickSpacing, address pool)
+        field_selection:
+          block_fields:
+            - timestamp
+  - name: KavachV3Pool
+    handler: src/EventHandlers.ts
+    events:
+      - event: Swap(address indexed sender, address indexed recipient, int256 amount0, int256 amount1, uint160 sqrtPriceX96, uint128 liquidity, int24 tick)
+        field_selection:
+          block_fields:
+            - timestamp
+
+networks:
+  - id: 8453
+    start_block: 0
+    contracts:
+      - name: KavachV3Factory
+        address:
+          - 0xb466D255cF671634Af91afa740Ce038A89734f9a
+      - name: KavachV3Pool
+  - id: 1
+    start_block: 0
+    contracts:
+      - name: KavachV3Factory
+        address:
+          - 0x4d659c45CA59f04C9a5c0C4Ce7c22e64faE47c2F
+      - name: KavachV3Pool
