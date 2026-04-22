@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=./node_modules/envio/evm.schema.json
 # Kavach V3 concentrated-liquidity pools on Base + Ethereum.
-# Addresses match deployments/base.json and deployments/mainnet.json (KavachV3Factory).
+# Addresses: deployments/base.json + deployments/mainnet.json (KavachV3Factory).
 #
-# After clone: pnpm install && pnpm codegen
-# Local: pnpm dev (Docker). Hosted: connect this repo (or monorepo subfolder) on envio.dev
+# Hosted: push this repo → Envio Cloud builds and deploys.
+# Local (Linux/macOS/WSL): pnpm install && pnpm codegen && pnpm dev
 
 name: kavachswap-v3-indexer
-description: Kavach V3 factories + dynamic pools; Swap aggregates for top-10 / charts
+description: Kavach V3 factories + dynamic pools; Swap aggregates for charts
 unordered_multichain_mode: true
 
 contracts:
