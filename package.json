@@ -8,8 +8,10 @@
     "dev": "envio dev",
     "start": "envio start"
   },
+  "dependencies": {
+    "envio": "2.32.12"
+  },
   "devDependencies": {
-    "envio": "2.32.12",
     "typescript": "^5.7.0"
   },
   "engines": {
